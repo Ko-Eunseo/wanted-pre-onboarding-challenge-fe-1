@@ -26,6 +26,8 @@ const LinkBox = styled.div`
 `;
 
 const Login = () => {
+  const accessToken = localStorage.getItem('todo_accessToken');
+  const navigate = useNavigate();
   const [isDisabled, setDisabled] = useState(true);
   const emailRegex = /[\w\-.]+@[\w\-.]+\.[\w\-.]/g
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/g
@@ -37,14 +39,17 @@ const Login = () => {
   }
   const [email, setEmail, alertEmail] = useInput('', checkEmailValidation);
   const [password, setPassword, alertPassword] = useInput('', checkPasswordValidation);
+
   useEffect(() => {
+    if(accessToken) {
+      navigate('/');
+    };
     if(email && password) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [email, password]);
-  const navigate = useNavigate();
+  }, [accessToken, email, password]);
   const onSubmit = (e) => {
     e.preventDefault();
     const url = 'http://localhost:8080/users/login';
@@ -52,11 +57,7 @@ const Login = () => {
       email,
       password
     }
-    const accessToken = localStorage.getItem('todo_accessToken');
     //다음번에 로그인 시 토큰이 존재한다면 루트 경로로 리다이렉트
-    if(accessToken) {
-      navigate('/')
-    } else {
       axios.post(url, payload)
       .then((res) => {
         console.log(res.data.token);
@@ -72,7 +73,7 @@ const Login = () => {
         console.log(err);
         return err;
       })
-    }
+    
   };
     // 유효성검사 
   // [v] 1. 메일 @ 포함

@@ -6,11 +6,18 @@
 // [] 6. 수정모드에서 개별아이템의 우측에 제출버튼과 취소버튼 표시
 // [] 7. 투두리스트 개별아이템 우측에 삭제버튼
 
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./common/Button";
 
 const Todo = () => {
+  const accessToken = localStorage.getItem('todo_accessToken');
   const navigate = useNavigate();
+  useEffect(() => {
+    if(!accessToken) {
+      navigate('/auth');
+    };
+  }, [accessToken])
   const handleLogout = () => {
     window.localStorage.removeItem("todo_accessToken");
     navigate('/auth');
