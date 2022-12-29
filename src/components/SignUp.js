@@ -38,14 +38,6 @@ const Signup = () => {
     }
   }
   const [passwordConfirm, setPasswordConfirm, alertPasswordConfirm] = useInput('', checkPasswordConfirmValidation);
-  const [isDisabled, setDisabled] = useState(true);
-  useEffect(() => {
-    if(email && password && passwordConfirm) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [email, password, passwordConfirm]);
 
   const navigate = useNavigate();
   const onSubmit = (e) => {
@@ -74,7 +66,6 @@ const Signup = () => {
   // [v] 1. 메일 @ 포함
   // [v] 2. 비밀번호 8자 이상
   // [v] 3. 메일과 비밀번호가 조건을 만족했을때만 버튼 활성화
-  // [v] 버튼 disabled가 한번 false가 되면 다시 갱신되지 않는다.
   return (
     <Wrap>
       <h2>가입하기</h2>
@@ -101,7 +92,7 @@ const Signup = () => {
         type="password" />
         { alertPasswordConfirm ? <span>비밀번호가 일치하지 않습니다.</span> : null }
         <Button styles="login"
-        disabled={isDisabled}
+        disabled={!(email && password && passwordConfirm)}
         >
           가입하기</Button>
       </SignUpBox>
