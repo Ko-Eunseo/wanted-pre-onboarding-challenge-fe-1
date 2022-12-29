@@ -12,14 +12,16 @@ export const LoginApi = async (email, password) => {
   }
   return await axios.post(url + path, payload)
   .then(res => {
-    console.log(res);
+    const accessToken = res.data.token;
+    //토큰 헤더에 default로 포함
+    //axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    localStorage.setItem('todo_accessToken', accessToken);
     return res;
   })
   .catch(err => {
+    if(err.response.status === 400) {
+      alert('로그인정보를 다시 확인해주세요.')
+    }
     return err;
   })
-}
-
-export const LogoutApi = () => {
-  //로컬스토리지에 저장된 토큰을 삭제
 }

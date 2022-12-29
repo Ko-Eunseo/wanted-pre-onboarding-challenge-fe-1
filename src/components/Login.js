@@ -4,8 +4,8 @@ import Button from './common/Button';
 import styled from 'styled-components';
 import useInput from './hooks/useInput';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { LoginApi } from './api/LoginApi';
 
 const LoginBox = styled.div`
   display: flex;
@@ -26,7 +26,8 @@ const LinkBox = styled.div`
 `;
 
 const Login = () => {
-  const [isDisabled, setDisabled] = useState(true);
+  const accessToken = localStorage.getItem('todo_accessToken');
+  const navigate = useNavigate();
   const emailRegex = /[\w\-.]+@[\w\-.]+\.[\w\-.]/g
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/g
   const checkEmailValidation = (inputEmail) => {
@@ -37,42 +38,17 @@ const Login = () => {
   }
   const [email, setEmail, alertEmail] = useInput('', checkEmailValidation);
   const [password, setPassword, alertPassword] = useInput('', checkPasswordValidation);
+
   useEffect(() => {
-    if(email && password) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [email, password]);
-  const navigate = useNavigate();
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const url = 'http://localhost:8080/users/login';
-    const payload = {
-      email,
-      password
-    }
-    const accessToken = localStorage.getItem('todo_accessToken');
     //다음번에 로그인 시 토큰이 존재한다면 루트 경로로 리다이렉트
     if(accessToken) {
-      navigate('/')
-    } else {
-      axios.post(url, payload)
-      .then((res) => {
-        console.log(res.data.token);
-        const accessToken = res.data.token;
-        localStorage.setItem('todo_accessToken', accessToken);
-        navigate('/');
-        // ?? [] 토큰이 유효하지 않다면 사용자에게 알리고 로그인페이지로 리다이렉트
-      })
-      .catch((err) => {
-        if(err.response.status === 400) {
-          alert('로그인정보를 다 확인해주세요.')
-        }
-        console.log(err);
-        return err;
-      })
-    }
+      navigate('/');
+    };
+  }, [accessToken]);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    LoginApi(email, password)
+    .then(navigate('/'));
   };
     // 유효성검사 
   // [v] 1. 메일 @ 포함
@@ -89,7 +65,7 @@ const Login = () => {
         placeholder="비밀번호" type="password" />
         { alertPassword ? <AlertMessage>비밀번호는 대소문자와 특수문자를 포함한 8글자 이상이어야 합니다.</AlertMessage> : null }
         <Button styles="login" 
-        disabled={isDisabled}
+        disabled={!(email && password)}
         type="submit"
         >로그인</Button>
         <LinkBox>
