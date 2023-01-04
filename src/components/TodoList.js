@@ -14,7 +14,7 @@ const TodoUl = styled.ul`
   margin-bottom: 16px;
 `;
 
-const TodoList = ({ refresh }) => {
+const TodoList = ({ refresh, refresher }) => {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +29,7 @@ const TodoList = ({ refresh }) => {
         todos.map((todo) => {
           return (
             <div key={todo.id}>
-              <TodoItem key={todo.id} todo={todo} 
+              <TodoItem key={todo.id} todo={todo} refresher={refresher}
             />
             </div>
           )

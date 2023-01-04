@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { BiCircle } from 'react-icons/bi';
 import { useNavigate, useParams } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { BsTrashFill } from "react-icons/bs";
+import { deleteTodo } from "../api/TodoApi";
 
 const TodoItemBox = styled.li`
   cursor: pointer;
@@ -10,13 +13,19 @@ const TodoItemBox = styled.li`
   display: flex;
   align-items: center;
   padding-left: 8px;
+  justify-content: space-between;
 `;
-const TodoTitle = styled.h2`
-  font-size: 1rem;
+const TodoTitle = styled.header`
+  display: flex;
   margin: 4px;
-  margin-right: 0;
+  align-items: center;
+  h2 {
+    font-size: 1rem;
+    margin-left: 4px;
+  }
 `;
-const TodoItem = ({ todo }) => {
+
+const TodoItem = ({ todo, refresher }) => {
   const navigate = useNavigate();
   const { "*" : curParams} = useParams();
   const handleOpenDetailPage = (e) => {
@@ -24,11 +33,23 @@ const TodoItem = ({ todo }) => {
     navigate('/') :
     navigate(`${todo.id}`);
   };
+  const handleDelete = (e) => {
+    e.preventDefault();
+    deleteTodo('/todos/', curParams)
+    .then(navigate('/'));
+    refresher();
+  };
+  // const handleUpdateMode = () => {
+  //   setEdit(!edit);
+  // };
   return (
     <>
       <TodoItemBox key={todo.id} onClick={handleOpenDetailPage} >
-        <BiCircle />
-        <TodoTitle>{todo.title}</TodoTitle>
+        <TodoTitle>
+          <BiCircle />
+          <h2>{todo.title}</h2>
+        </TodoTitle>
+        <BsTrashFill onClick={handleDelete} />
       </TodoItemBox>
     </>
   )
