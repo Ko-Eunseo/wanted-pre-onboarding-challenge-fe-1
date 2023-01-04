@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import Input from './common/Input';
 import Button from './common/Button';
 import styled from 'styled-components';
 import useInput from './hooks/useInput';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { LoginApi } from './api/LoginApi';
+import Input from './common/Input';
 
 const LoginBox = styled.div`
+  margin-top: 16px;
+  width: 50%;
+  background: #f0ede6;
+  border-radius: 5px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
-const InputBox = styled.form`
-  width: 50%;
+const Header = styled.h1`
+  font-size: 1.5rem;
+  color: #171e71;
+  border-bottom: 2px solid #cb5917;
+  width: 100%;
 `;
+const InputBox = styled.form`
+  width: 100%;
+  margin: 16px 0;
+  > button {
+    margin-top: 8px;
+  }
+`;
+
 const AlertMessage = styled.span`
   font-size: 0.8rem;
   color: tomato;
@@ -23,17 +39,18 @@ const AlertMessage = styled.span`
 const LinkBox = styled.div`
   display: flex;
   justify-content: end;
+  margin-top: 8px;
 `;
 
 const Login = () => {
   const accessToken = localStorage.getItem('todo_accessToken');
   const navigate = useNavigate();
-  const emailRegex = /[\w\-.]+@[\w\-.]+\.[\w\-.]/g
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/g
   const checkEmailValidation = (inputEmail) => {
+    const emailRegex = /[\w\-.]+@[\w\-.]+\.[\w\-.]/g
     return emailRegex.test(inputEmail);
   }
   const checkPasswordValidation = (inputPassword) => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/g
     return passwordRegex.test(inputPassword);
   }
   const [email, setEmail, alertEmail] = useInput('', checkEmailValidation);
@@ -56,16 +73,19 @@ const Login = () => {
   // [v] 3. 메일과 비밀번호가 조건을 만족했을때만 버튼 활성화
   return (
     <LoginBox>
-      <h1>로그인</h1>
+      <Header>로그인</Header>
       <InputBox onSubmit={onSubmit}>
         <Input id="email" value={email} onChange={setEmail} 
-        placeholder="전화번호, 사용자 이름 또는 이메일" />
-        { alertEmail ? <AlertMessage>이메일 형식이 아닙니다.</AlertMessage> : null }
+        placeholder="이메일을 입력하세요" />
+        { alertEmail && email.length ? 
+        <AlertMessage>이메일 형식이 아닙니다.</AlertMessage> : null }
         <Input id="password" value={password} onChange={setPassword} 
         placeholder="비밀번호" type="password" />
-        { alertPassword ? <AlertMessage>비밀번호는 대소문자와 특수문자를 포함한 8글자 이상이어야 합니다.</AlertMessage> : null }
+        { alertPassword && password.length ? 
+        <AlertMessage>비밀번호는 영문과 숫자를 포함한 8글자 이상입니다.</AlertMessage> : null }
         <Button styles="default" 
-        disabled={!(email && password)}
+        disabled={
+          (alertEmail === true || alertPassword === true)}
         type="submit"
         >로그인</Button>
         <LinkBox>
