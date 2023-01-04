@@ -36,14 +36,15 @@ const Header = styled.header`
   svg {
     font-size: 1.2rem;
     transition: 0.2s all ease-in;
-  &:hover {
-    transform: rotate(90deg);
-  }
+    &:hover {
+      transform: rotate(90deg);
+    }
   }
 `;
 const Title = styled.h1`
   font-size: 1.5rem;
   text-align: left;
+  margin-left: 8px;
 `;
 const Article = styled.article`
   border: 5px double #cb5917;

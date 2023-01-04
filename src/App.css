@@ -22,6 +22,9 @@ svg {
   cursor: pointer;
   color: #cb5917;
 }
+svg:hover {
+  color: #171e71;
+}
 .App {
   width: 100%;
   display: flex;
