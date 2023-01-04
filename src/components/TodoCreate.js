@@ -3,12 +3,17 @@ import Button from './common/Button';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { createTodo } from './api/TodoApi';
+import {AiFillCloseSquare} from 'react-icons/ai';
 
-const CreateTitle = styled.h3`
-  font-size: 1.2rem;
-  text-align: left;
+const CreateTitle = styled.header`
+  display: flex;
+  justify-content: space-between;
   color: #171e71;
   border-bottom: 2px solid #cb5917;
+  h3 {
+    text-align: left;
+    font-size: 1.2rem;
+  }
 `;
 const CreateForm = styled.form`
   background: #f0ede6;
@@ -26,7 +31,7 @@ const Textarea = styled.textarea`
   padding: 8px;
 `;
 
-const TodoCreate = ({refresher}) => {
+const TodoCreate = ({refresher, handleAddMode}) => {
   const [todoContent, setTodoContent] = useState({
     title: '',
     content: ''
@@ -55,7 +60,10 @@ const TodoCreate = ({refresher}) => {
   return (
     <>
     <CreateForm onSubmit={handleCreateTodo}>
-      <CreateTitle>Todo 추가하기</CreateTitle>
+      <CreateTitle>
+        <h3>Todo 추가하기</h3>
+        <AiFillCloseSquare onClick={handleAddMode}/>
+      </CreateTitle>
       <Input name="title" placeholder="오늘 할 일을 적어보세요." border="border" value={title} onChange={handleTodoContent} />
       <Textarea name="content" value={content} onChange={handleTodoContent} />
       <Button styles="default" type="submit">Add Todo</Button>

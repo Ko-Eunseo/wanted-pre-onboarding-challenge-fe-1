@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {BsFillPlusSquareFill} from 'react-icons/bs';
+import {AiFillPlusSquare, AiFillCloseSquare} from 'react-icons/ai';
+// FaWindowClose
 import styled from "styled-components";
 import Button from "./common/Button";
 import TodoCreate from "./TodoCreate";
@@ -32,6 +33,13 @@ const Header = styled.header`
   align-items: center;
   margin: 16px 0px 4px;
   color: #171e71;
+  svg {
+    font-size: 1.2rem;
+    transition: 0.2s all ease-in;
+  &:hover {
+    transform: rotate(90deg);
+  }
+  }
 `;
 const Title = styled.h1`
   font-size: 1.5rem;
@@ -75,7 +83,12 @@ const Todo = () => {
       <TodoBox>
         <Header>
           <Title>Todo List</Title>
-          <BsFillPlusSquareFill onClick={handleAddMode}/>
+          {
+            addMode ?
+            <AiFillCloseSquare onClick={handleAddMode}/>
+            :
+            <AiFillPlusSquare onClick={handleAddMode}/>
+          }
         </Header>
         <Article>
           <TodoList refresher={refresher} refresh={refresh} />
@@ -87,7 +100,7 @@ const Todo = () => {
           <TodoDetail curParams={curParams}
             refresher={refresher} refresh={refresh} /> : null}
         {addMode ?
-          <TodoCreate refresher={refresher} />
+          <TodoCreate refresher={refresher} handleAddMode={handleAddMode}/>
           : null
         }
       </TodoHandleBox>

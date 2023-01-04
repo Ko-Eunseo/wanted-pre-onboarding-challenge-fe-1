@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteTodo, getSpecificTodo } from "./api/TodoApi";
 import { BiCircle } from 'react-icons/bi';
-import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { BsTrashFill } from "react-icons/bs";
 import styled from "styled-components";
 import EditMode from "./EditMode";
 
@@ -31,9 +32,9 @@ const TodoTitle = styled.header`
 `;
 const EditBox = styled.div`
   svg {
-    margin: 4px 4px;
-    &:last-of-type {
-      margin-right: 0;
+    margin-top: 4px;
+    &:first-of-type {
+      margin-right: 4px;
     }
   }
 `;
@@ -90,7 +91,7 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
               <BiCircle />
               <h3>{title}</h3>
               <EditBox>
-                <FaTrash onClick={handleDelete} />
+                <BsTrashFill onClick={handleDelete} />
                 <FaEdit onClick={handleUpdateMode} />
               </EditBox>
             </TodoTitle>
