@@ -9,7 +9,6 @@ import EditMode from "./EditMode";
 
 const TodoDetailBox = styled.section`
   background: #f0ede6;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -34,22 +33,22 @@ const EditBox = styled.div`
   svg {
     margin-top: 4px;
     &:first-of-type {
-      margin-right: 4px;
+      margin-right: 8px;
     }
   }
 `;
 const TodoContent = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin: 8px 0; */
   border-bottom: 2px solid #cb5917;
   opacity: 0.8;
   background-position: center;
   background-image:  linear-gradient(#cb5917 1px, transparent 1px), linear-gradient(to right, #cb5917 1px, transparent 1px);
   background-size: 1.5rem 1.5rem;
   p {
-    margin: 8px;
+    margin: 16px 8px;
     text-align: left;
+    font-weight: 500;
   }
   svg {
     margin: 0 8px;
@@ -67,6 +66,7 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
     }
     fetchData();
   }, [curParams, refresh]);
+  
   const handleDelete = (e) => {
     e.preventDefault();
     deleteTodo('/todos/', curParams)

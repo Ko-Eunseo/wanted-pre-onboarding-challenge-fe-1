@@ -51,7 +51,10 @@ const EditMode = ({curParams, refresher, curTitle, curContent, handleUpdateMode}
   }
   const submitUpdateTodo = (e) => {
     e.preventDefault();
-    const payload = updateTodoData;
+    const payload = {
+      title: title ? title : curTitle,
+      content: content ? content : curContent
+    }
     updateTodo('/todos/', curParams, payload);
     refresher();
     handleUpdateMode();

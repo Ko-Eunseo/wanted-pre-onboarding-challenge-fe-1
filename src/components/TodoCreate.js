@@ -13,6 +13,7 @@ const CreateTitle = styled.header`
   h3 {
     text-align: left;
     font-size: 1.2rem;
+    margin-left: 8px;
   }
 `;
 const CreateForm = styled.form`
