@@ -2,13 +2,20 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const BUTTON_STYLE = {
-  login: css`
-    --background-color: #0095f6;
+  default: css`
+    --background-color: #171e71;
     --color: #ffffff;
     --padding: 8px 0;
     --width: 100%;
     --hover: .8;
   `,
+  cancel: css`
+  --background-color: #cb5917;
+  --color: #ffffff;
+  --padding: 8px 0;
+  --width: 100%;
+  --hover: .8;
+`,
   link: css`
     --background-color: transparent;
     --color: black;
@@ -45,7 +52,7 @@ const Button = ({ children, styles, onClick, disabled, type }) => {
       buttonStyle={buttonStyle} 
       onClick={onClick} 
       disabled={disabled}
-      type={type}
+      type={type ? type : "button"}
       >
         {children}
       </StyledBtn>

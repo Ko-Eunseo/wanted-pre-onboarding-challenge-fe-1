@@ -1,21 +1,39 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useInput from "./hooks/useInput";
 import Input from "./common/Input";
 import Button from "./common/Button";
 import { useNavigate } from "react-router-dom";
+import {AiFillCloseSquare} from 'react-icons/ai';
 
 const Wrap = styled.div`
   width: 50%;
-  margin: 0 auto;
+  margin: 16px auto 0;
+  background: #f0ede6;
+  padding: 16px;
+  border-radius: 5px;
+`;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #171e71;
+  border-bottom: 2px solid #cb5917;
+  h1 {
+    margin-left: 8px;
+    font-size: 1.5rem;
+  }
 `;
 const SignUpBox = styled.form`
   display: flex;
   flex-direction: column;
+  margin: 16px 0;
   span {
     color: red;
     font-size: 0.8rem;
+  }
+  > button {
+    margin-top: 8px;
   }
 `;
 
@@ -61,6 +79,9 @@ const Signup = () => {
       console.log(err);
     })
   };
+  const handleCloseSignup = () => {
+    navigate('/auth');
+  }
   
   // 유효성검사 
   // [v] 1. 메일 @ 포함
@@ -68,7 +89,10 @@ const Signup = () => {
   // [v] 3. 메일과 비밀번호가 조건을 만족했을때만 버튼 활성화
   return (
     <Wrap>
-      <h2>가입하기</h2>
+      <Header>
+        <h1>가입하기</h1>
+        <AiFillCloseSquare onClick={handleCloseSignup} />
+      </Header>
       <SignUpBox onSubmit={onSubmit}>
       <Input 
         id="email" 
@@ -76,23 +100,23 @@ const Signup = () => {
         value={email} 
         onChange={setEmail} 
         type="email" />
-        { alertEmail ? <span>이메일 형식이 아닙니다.</span> : null }
+        { alertEmail && email.length ? <span>이메일 형식이 아닙니다.</span> : null }
         <Input 
         id="password" 
         placeholder="비밀번호" 
         value={password} 
         onChange={setPassword} 
         type="password" />
-        { alertPassword ? <span>비밀번호는 숫자, 영문자를 포함한 8글자 이상이어야 합니다.</span> : null }
+        { alertPassword && password.length ? <span>비밀번호는 숫자, 영문자를 포함한 8글자 이상이어야 합니다.</span> : null }
         <Input 
         id="passwordConfirm" 
         placeholder="비밀번호 확인" 
         value={passwordConfirm} 
         onChange={setPasswordConfirm} 
         type="password" />
-        { alertPasswordConfirm ? <span>비밀번호가 일치하지 않습니다.</span> : null }
-        <Button styles="login"
-        disabled={!(email && password && passwordConfirm)}
+        { alertPasswordConfirm && passwordConfirm.length ? <span>비밀번호가 일치하지 않습니다.</span> : null }
+        <Button styles="default" type="submit"
+        disabled={(alertEmail || alertPassword || alertPasswordConfirm)}
         >
           가입하기</Button>
       </SignUpBox>
