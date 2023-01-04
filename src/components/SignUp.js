@@ -91,7 +91,7 @@ const Signup = () => {
         onChange={setPasswordConfirm} 
         type="password" />
         { alertPasswordConfirm ? <span>비밀번호가 일치하지 않습니다.</span> : null }
-        <Button styles="login"
+        <Button styles="default"
         disabled={!(email && password && passwordConfirm)}
         >
           가입하기</Button>

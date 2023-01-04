@@ -64,7 +64,7 @@ const Login = () => {
         <Input id="password" value={password} onChange={setPassword} 
         placeholder="비밀번호" type="password" />
         { alertPassword ? <AlertMessage>비밀번호는 대소문자와 특수문자를 포함한 8글자 이상이어야 합니다.</AlertMessage> : null }
-        <Button styles="login" 
+        <Button styles="default" 
         disabled={!(email && password)}
         type="submit"
         >로그인</Button>
