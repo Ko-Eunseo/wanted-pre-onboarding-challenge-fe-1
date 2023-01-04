@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateTodo } from "./api/TodoApi";
 import styled from "styled-components";
 import Input from "./common/Input";
@@ -9,9 +9,16 @@ const Form = styled.form`
     padding: 0;
   }
 `;
+const EditTitle = styled.header`
+  color: #171e71;
+  border-bottom: 2px solid #cb5917;
+  margin-bottom: 8px;
+  h3 {
+    font-size: 1.2rem;
+  }
+`;
 const TodoTitle = styled.div`
   display: flex;
-  border-bottom: 1px solid #eeeeee;
   padding: 8px 16px;
   justify-content: space-between;
 `;
@@ -37,17 +44,14 @@ const EditMode = ({curParams, refresher, curTitle, curContent, handleUpdateMode}
   const handleUpdateTodo = (e) => {
     const { value, name } = e.target;
     setUpdateTodoData({
-      ...updateTodo,
+      ...updateTodoData,
       [name]: value
     });
-    console.log(e);
+    console.log(name, ': ', value);
   }
   const submitUpdateTodo = (e) => {
     e.preventDefault();
-    const payload = {
-      title: title ? title : curTitle,
-      content: content ? content : curContent
-    }
+    const payload = updateTodoData;
     updateTodo('/todos/', curParams, payload);
     refresher();
     handleUpdateMode();
@@ -55,12 +59,14 @@ const EditMode = ({curParams, refresher, curTitle, curContent, handleUpdateMode}
   return (
     <>
       <Form onSubmit={submitUpdateTodo}>
+        <EditTitle>
+          <h3>Todo 수정하기</h3>
+        </EditTitle>
         <div>
           <TodoTitle>
             <Input name="title" 
             value={title ? title : curTitle} 
             onChange={handleUpdateTodo}
-            placeholder={title ? title : curTitle}
             />
           </TodoTitle>
           <Textarea name="content" 

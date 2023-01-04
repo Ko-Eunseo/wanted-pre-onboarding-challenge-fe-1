@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteTodo, getSpecificTodo } from "./api/TodoApi";
+import { BiCircle } from 'react-icons/bi';
 import { FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import styled from "styled-components";
 import EditMode from "./EditMode";
 
-const TodoDetailBox = styled.div`
+const TodoDetailBox = styled.section`
+  background: #f0ede6;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #eeeeee;
   border-radius: 5px;
-  margin: 16px 0;
+  margin-bottom: 16px;
+  padding: 16px;
 `;
-const TodoTitle = styled.div`
+const TodoTitle = styled.header`
   display: flex;
   border-bottom: 1px solid #eeeeee;
   padding: 8px 16px;
   justify-content: space-between;
+  border: 2px solid #cb5917;
+  border-left: 0;
+  border-right: 0;
+  align-items: center;
+  color: #171e71;
+  h3 {
+    font-size: 1.2rem;
+  }
 `;
 const EditBox = styled.div`
   svg {
@@ -28,7 +39,17 @@ const EditBox = styled.div`
 `;
 const TodoContent = styled.div`
   display: flex;
-  margin: 8px 16px 16px;
+  flex-direction: column;
+  /* margin: 8px 0; */
+  border-bottom: 2px solid #cb5917;
+  opacity: 0.8;
+  background-position: center;
+  background-image:  linear-gradient(#cb5917 1px, transparent 1px), linear-gradient(to right, #cb5917 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+  p {
+    margin: 8px;
+    text-align: left;
+  }
   svg {
     margin: 0 8px;
   }
@@ -66,15 +87,15 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
           :
           <>
             <TodoTitle>
-              <h2>{title}</h2>
+              <BiCircle />
+              <h3>{title}</h3>
               <EditBox>
                 <FaTrash onClick={handleDelete} />
                 <FaEdit onClick={handleUpdateMode} />
               </EditBox>
             </TodoTitle>
-            <span>{createdAt}</span>
             <TodoContent>
-              <FaCheck />
+            <span>Date: {createdAt}</span>
               <p>{content}</p>
             </TodoContent>
           </>

@@ -3,14 +3,14 @@ import styled, { css } from 'styled-components';
 
 const BUTTON_STYLE = {
   default: css`
-    --background-color: #0095f6;
+    --background-color: #171e71;
     --color: #ffffff;
     --padding: 8px 0;
     --width: 100%;
     --hover: .8;
   `,
   cancel: css`
-  --background-color: #ffa74f;
+  --background-color: #cb5917;
   --color: #ffffff;
   --padding: 8px 0;
   --width: 100%;

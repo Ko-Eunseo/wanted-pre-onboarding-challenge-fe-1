@@ -1,17 +1,19 @@
 import styled from "styled-components";
-import { FaCheck } from "react-icons/fa";
+import { BiCircle } from 'react-icons/bi';
 import { useNavigate, useParams } from "react-router-dom";
 
 const TodoItemBox = styled.li`
   cursor: pointer;
   width: 100%;
-  border: 1px solid #eeeeee;
+  border-bottom: 2px solid #cb5917;
   margin: 4px auto;
   display: flex;
-  border-radius: 5px;
+  align-items: center;
+  padding-left: 8px;
 `;
 const TodoTitle = styled.h2`
-  margin: 8px;
+  font-size: 1rem;
+  margin: 4px;
   margin-right: 0;
 `;
 const TodoItem = ({ todo }) => {
@@ -25,6 +27,7 @@ const TodoItem = ({ todo }) => {
   return (
     <>
       <TodoItemBox key={todo.id} onClick={handleOpenDetailPage} >
+        <BiCircle />
         <TodoTitle>{todo.title}</TodoTitle>
       </TodoItemBox>
     </>

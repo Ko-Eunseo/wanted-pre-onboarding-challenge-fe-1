@@ -11,6 +11,7 @@ import TodoItem from "./common/TodoItem";
 // [v] 7. 투두리스트 개별아이템 우측에 삭제버튼
 
 const TodoUl = styled.ul`
+  margin-bottom: 16px;
 `;
 
 const TodoList = ({ refresh }) => {
