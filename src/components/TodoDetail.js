@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteTodo, getSpecificTodo } from "./api/TodoApi";
 import { BiCircle } from 'react-icons/bi';
 import { FaEdit } from "react-icons/fa";
@@ -66,7 +66,6 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
     }
     fetchData();
   }, [curParams, refresh]);
-  
   const handleDelete = (e) => {
     e.preventDefault();
     deleteTodo('/todos/', curParams)
