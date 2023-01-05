@@ -9,6 +9,7 @@ import Input from './common/Input';
 
 const LoginBox = styled.div`
   margin-top: 16px;
+  max-width: 400px;
   width: 50%;
   background: #f0ede6;
   border-radius: 5px;
