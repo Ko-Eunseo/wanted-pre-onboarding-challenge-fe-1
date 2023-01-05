@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { BiCircle } from 'react-icons/bi';
+import { BiCircle, BiCheckCircle } from 'react-icons/bi';
 import { useNavigate, useParams } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
 import { BsTrashFill } from "react-icons/bs";
 import { deleteTodo } from "../api/TodoApi";
 
@@ -33,23 +32,22 @@ const TodoItem = ({ todo, refresher }) => {
     navigate('/') :
     navigate(`${todo.id}`);
   };
-  const handleDelete = (e) => {
-    e.preventDefault();
-    deleteTodo('/todos/', curParams)
-    .then(navigate('/'));
-    refresher();
-  };
-  // const handleUpdateMode = () => {
-  //   setEdit(!edit);
+  // const handleDelete = (e) => {
+  //   e.preventDefault();
+  //   deleteTodo('/todos/', todo.id)
+  //   refresher();
   // };
   return (
     <>
       <TodoItemBox key={todo.id} onClick={handleOpenDetailPage} >
         <TodoTitle>
-          <BiCircle />
+          {curParams === todo.id ?
+            <BiCheckCircle />
+            : <BiCircle />
+          }
           <h2>{todo.title}</h2>
         </TodoTitle>
-        <BsTrashFill onClick={handleDelete} />
+        {/* <BsTrashFill onClick={handleDelete} /> */}
       </TodoItemBox>
     </>
   )
