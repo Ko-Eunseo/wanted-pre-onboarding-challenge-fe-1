@@ -47,7 +47,6 @@ const EditMode = ({curParams, refresher, curTitle, curContent, handleUpdateMode}
       ...updateTodoData,
       [name]: value
     });
-    console.log(name, ': ', value);
   }
   const submitUpdateTodo = (e) => {
     e.preventDefault();

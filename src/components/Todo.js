@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {AiFillPlusSquare, AiFillCloseSquare} from 'react-icons/ai';
-// FaWindowClose
 import styled from "styled-components";
 import Button from "./common/Button";
 import TodoCreate from "./TodoCreate";
 import TodoDetail from "./TodoDetail";
 import TodoList from "./TodoList";
+
 const Wrap = styled.div`
   display: flex;
+  justify-content: center;
   width: 80%;
   margin-top: 1rem;
 `;
@@ -52,6 +53,7 @@ const Article = styled.article`
   border-right: 0;
   min-height: 400px;
 `;
+
 const Todo = () => {
   const [addMode, setAddMode] = useState(false);
   const [refresh, setRefresh] = useState(0);
@@ -62,7 +64,7 @@ const Todo = () => {
     if(!accessToken) {
       navigate('/auth');
     };
-  }, [accessToken, refresh]);
+  }, [accessToken, navigate, refresh]);
 
   const handleLogout = () => {
     //로컬스토리지에 저장된 토큰을 삭제
