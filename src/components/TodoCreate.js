@@ -23,6 +23,9 @@ const CreateForm = styled.form`
   > input {
     margin-top: 16px;
   }
+  @media screen and (max-width: 700px) {
+    box-shadow: 0px -5px 4px -2px rgba(163,163,163,0.49);
+  }
 `;
 const Textarea = styled.textarea`
   width: 100%;

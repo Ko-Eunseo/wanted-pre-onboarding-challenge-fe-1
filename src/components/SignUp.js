@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import {AiFillCloseSquare} from 'react-icons/ai';
 
 const Wrap = styled.div`
+  max-width: 400px;
   width: 50%;
   margin: 16px auto 0;
   background: #f0ede6;

@@ -11,22 +11,51 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
   width: 80%;
+  border-radius: 8px;
   margin-top: 1rem;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    position: relative;
+    height: 90vh;
+  }
+`;
+const Footer = styled.footer`
+  border-top: 5px double #cb5917;
+  padding-bottom: 16px;
+  @media screen and (max-width: 700px) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 16px;
+  }
 `;
 const TodoBox = styled.div`
-  flex: 1;
   background: #f0ede6;
   border-radius: 8px;
+  flex: 1;
   padding: 16px;
   min-height: 500px;
   max-width: 400px;
   margin-right: 16px;
+  @media screen and (max-width: 700px) {
+    margin-right: 0;
+    max-width: 100%;
+  }
 `;
 const TodoHandleBox = styled.aside`
   display: flex;
   flex-direction: column;
   flex: 1;
   max-width: 400px;
+  @media screen and (max-width: 700px) {
+    box-shadow: 0px -5px 4px -2px rgba(163,163,163,0.49);
+    border-radius: 8px;
+    position: absolute;
+    bottom: 46px;
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 const Header = styled.header`
   display: flex;
@@ -48,10 +77,9 @@ const Title = styled.h1`
   margin-left: 8px;
 `;
 const Article = styled.article`
-  border: 5px double #cb5917;
-  border-left: 0;
-  border-right: 0;
+  border-top: 5px double #cb5917;
   min-height: 400px;
+
 `;
 
 const Todo = () => {
@@ -97,18 +125,19 @@ const Todo = () => {
         <Article>
           <TodoList refresher={refresher} refresh={refresh} />
         </Article>
-        <Button onClick={handleLogout} styles="link">로그아웃</Button>
+        <Footer>
+          <Button onClick={handleLogout} styles="link">로그아웃</Button>
+        </Footer>
       </TodoBox>
       <TodoHandleBox>
         {curParams ?
           <TodoDetail curParams={curParams}
-            refresher={refresher} refresh={refresh} /> : null}
+          refresher={refresher} refresh={refresh} /> : null}
         {addMode ?
           <TodoCreate refresher={refresher} handleAddMode={handleAddMode}/>
           : null
         }
       </TodoHandleBox>
-        
     </Wrap>
   )
 };

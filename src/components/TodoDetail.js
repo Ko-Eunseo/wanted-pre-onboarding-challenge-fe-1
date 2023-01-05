@@ -28,6 +28,14 @@ const TodoTitle = styled.header`
   h3 {
     font-size: 1.2rem;
   }
+  @media screen and (min-width: 701px) and (max-width: 800px) {
+    h3 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+  }
 `;
 const EditBox = styled.div`
   svg {
