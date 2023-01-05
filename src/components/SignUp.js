@@ -5,6 +5,7 @@ import Input from "./common/Input";
 import Button from "./common/Button";
 import { useNavigate } from "react-router-dom";
 import {AiFillCloseSquare} from 'react-icons/ai';
+import SignupApi from "./api/SignupApi";
 
 const Wrap = styled.div`
   max-width: 400px;
@@ -61,24 +62,8 @@ const Signup = () => {
   const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
-    const url = 'http://localhost:8080/users/create';
-    const payload = {
-      email,
-      password
-    }
-    axios.post(url, payload)
-    .then(res => {
-      console.log(res.data);
-      alert('회원가입이 완료되었습니다.');
-      navigate('/');
-    }
-    )
-    .catch(err => {
-      if(err.response.status === 409) {
-        alert('이미 가입되어있는 아이디 입니다.')
-      }
-      console.log(err);
-    })
+    SignupApi(email,password)
+    .then(navigate('/auth'));
   };
   const handleCloseSignup = () => {
     navigate('/auth');

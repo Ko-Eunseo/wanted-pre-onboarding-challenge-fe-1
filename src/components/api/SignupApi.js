@@ -9,11 +9,14 @@ const SignupApi = async (email, password) => {
   }
   return await axios.post(url + path, payload)
   .then(res => {
-    console.log(res);
+    alert('회원가입이 완료되었습니다.');
     return res;
   })
   .catch(err => {
-    return err;
+    if(err.response.status === 409) {
+      alert('이미 가입되어있는 아이디 입니다.')
+    }
+    console.log(err);
   })
 }
 
