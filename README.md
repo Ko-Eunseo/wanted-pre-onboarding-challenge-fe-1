@@ -8,7 +8,7 @@
 > https://user-images.githubusercontent.com/85021536/210789050-77a730d8-eb83-4b6f-bd45-3607f56dae43.mov
 
 ## Signup
-에러발생으로 수정중...
+> https://user-images.githubusercontent.com/85021536/210797225-670cea72-1ea8-4214-aab2-34cd5423a804.mov
 
 ## Todo
 ### Read
