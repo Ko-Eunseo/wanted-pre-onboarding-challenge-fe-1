@@ -71,6 +71,7 @@ const Todo = () => {
     window.localStorage.removeItem("todo_accessToken");
     alert('로그아웃 되었습니다.');
     navigate('/auth');
+    window.location.reload();
   };
 
   const refresher = () => {
