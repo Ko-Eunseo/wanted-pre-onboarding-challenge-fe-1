@@ -22,3 +22,10 @@
 
 ### Delete
 > https://user-images.githubusercontent.com/85021536/210788725-6f77b64d-11f2-4d08-b2cc-bda6403b7cbe.mov
+
+### Refactor
+> 1. 타입스크립트 적용
+벨로그: https://velog.io/@koyk0408/series/typescript
+> 2. 스타일과 로직 분리
+벨로그: https://velog.io/@koyk0408/react-%EC%8A%A4%ED%83%80%EC%9D%BC%EA%B3%BC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0
+
