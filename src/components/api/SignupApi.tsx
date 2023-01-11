@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SignupApi = async (email, password) => {
+const SignupApi = async (email:string, password:string) => {
   const url = process.env.REACT_APP_SERVER_URL;
   const path = '/users/create';
   const payload = {

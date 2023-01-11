@@ -1,7 +1,6 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 
-const BUTTON_STYLE = {
+export const BUTTON_STYLE = {
   default: css`
     --background-color: #171e71;
     --color: #ffffff;
@@ -23,7 +22,7 @@ const BUTTON_STYLE = {
     --hover: underline;
   `,
 };
-const StyledBtn = styled.button`
+export const StyledBtn = styled.button<{buttonStyle: string}>`
   ${props => props.buttonStyle}
   width: var(--width);
   border: none;
@@ -44,20 +43,3 @@ const StyledBtn = styled.button`
     background: #dc3545 #025ce2;
   }
 `;
-const Button = ({ children, styles, onClick, disabled, type }) => {
-  const buttonStyle = BUTTON_STYLE[styles]
-  return (
-    <>
-      <StyledBtn 
-      buttonStyle={buttonStyle} 
-      onClick={onClick} 
-      disabled={disabled}
-      type={type ? type : "button"}
-      >
-        {children}
-      </StyledBtn>
-    </>
-  )
-}
-
-export default Button;

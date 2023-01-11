@@ -1,7 +1,13 @@
 import axios from "axios";
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
-const url = 'http://localhost:8080';
+const url = process.env.REACT_APP_SERVER_URL;
+
+interface TodoApiParams {
+  path: string,
+  todoId?: number,
+  parameter?: object,
+}
 
 export const getTodos = async (path) => {
   const res = await axios.get(url + path);

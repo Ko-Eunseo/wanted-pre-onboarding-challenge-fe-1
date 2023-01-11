@@ -1,43 +1,9 @@
-import axios from "axios";
-import styled from "styled-components";
-import useInput from "./hooks/useInput";
-import Input from "./common/Input";
-import Button from "./common/Button";
-import { useNavigate } from "react-router-dom";
+import SignupApi from "../../api/SignupApi";
+import useInput from "../../hooks/useInput";
+import Input from "../../common/Input/Input";
+import Button from "../../common/button/Button";
 import {AiFillCloseSquare} from 'react-icons/ai';
-import SignupApi from "./api/SignupApi";
-
-const Wrap = styled.div`
-  max-width: 400px;
-  width: 50%;
-  margin: 16px auto 0;
-  background: #f0ede6;
-  padding: 16px;
-  border-radius: 5px;
-`;
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #171e71;
-  border-bottom: 2px solid #cb5917;
-  h1 {
-    margin-left: 8px;
-    font-size: 1.5rem;
-  }
-`;
-const SignUpBox = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin: 16px 0;
-  span {
-    color: red;
-    font-size: 0.8rem;
-  }
-  > button {
-    margin-top: 8px;
-  }
-`;
+import * as SignUpStyle from './SignUpStyle';
 
 const Signup = () => {
   const emailRegex = /[\w\-.]+@[\w\-.]+\.[\w\-.]/g
@@ -59,27 +25,22 @@ const Signup = () => {
   }
   const [passwordConfirm, setPasswordConfirm, alertPasswordConfirm] = useInput('', checkPasswordConfirmValidation);
 
-  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     SignupApi(email,password)
-    .then(navigate('/auth'));
+    window.location.href = "/auth";
   };
   const handleCloseSignup = () => {
-    navigate('/auth');
+    window.location.href = "/auth";
   }
   
-  // 유효성검사 
-  // [v] 1. 메일 @ 포함
-  // [v] 2. 비밀번호 8자 이상
-  // [v] 3. 메일과 비밀번호가 조건을 만족했을때만 버튼 활성화
   return (
-    <Wrap>
-      <Header>
+    <SignUpStyle.Wrap>
+      <SignUpStyle.Header>
         <h1>가입하기</h1>
         <AiFillCloseSquare onClick={handleCloseSignup} />
-      </Header>
-      <SignUpBox onSubmit={onSubmit}>
+      </SignUpStyle.Header>
+      <SignUpStyle.SignUpBox onSubmit={onSubmit}>
       <Input 
         id="email" 
         placeholder="메일" 
@@ -105,8 +66,8 @@ const Signup = () => {
         disabled={(alertEmail || alertPassword || alertPasswordConfirm)}
         >
           가입하기</Button>
-      </SignUpBox>
-    </Wrap>
+      </SignUpStyle.SignUpBox>
+    </SignUpStyle.Wrap>
   )
 }
 
