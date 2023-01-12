@@ -21,10 +21,3 @@ export const CreateForm = styled.form`
     box-shadow: 0px -5px 4px -2px rgba(163,163,163,0.49);
   }
 `;
-export const Textarea = styled.textarea`
-  width: 100%;
-  border: none;
-  border-radius: 4px;
-  margin: 4px 0;
-  padding: 8px;
-`;

@@ -3,6 +3,7 @@ import { updateTodo } from "../../../api/TodoApi";
 import Input from "../../../common/Input/Input";
 import Button from "../../../common/button/Button";
 import * as EditModeStyle from './EditModeStyle';
+import Textarea from "../../../common/textaea/Textarea";
 
 const EditMode = ({curParams, refresher, curTitle, curContent, handleUpdateMode}) => {
   const [updateTodoData, setUpdateTodoData] = useState({
@@ -42,7 +43,7 @@ const EditMode = ({curParams, refresher, curTitle, curContent, handleUpdateMode}
             type="text"
             />
           </EditModeStyle.TodoTitle>
-          <EditModeStyle.Textarea name="content" 
+          <Textarea name="content" 
           value={content ? content : curContent} 
           onChange={handleUpdateTodo}/>
         </div>

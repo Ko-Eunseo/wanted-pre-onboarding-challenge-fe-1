@@ -55,12 +55,8 @@ export const Header = styled.header`
   align-items: center;
   margin: 16px 0px 4px;
   color: #171e71;
-  svg {
+  button svg {
     font-size: 1.2rem;
-    transition: 0.2s all ease-in;
-    &:hover {
-      transform: rotate(90deg);
-    }
   }
 `;
 export const Title = styled.h1`
@@ -71,5 +67,4 @@ export const Title = styled.h1`
 export const Article = styled.article`
   border-top: 5px double #cb5917;
   min-height: 400px;
-
 `;

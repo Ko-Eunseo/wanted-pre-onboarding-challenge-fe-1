@@ -5,16 +5,20 @@ import { FaEdit } from "react-icons/fa";
 import { BsTrashFill } from "react-icons/bs";
 import EditMode from "../editMode/EditMode";
 import * as TodoDetailStyle from './TodoDetailStyle';
+import IconButton from "../../../common/iconButton/IconButton";
+import { useNavigate } from "react-router-dom";
 
 interface TodoType {
   title?: string,
   content?: string,
   createdAt?: string,
 }
+
 const TodoDetail = ({curParams, refresh, refresher}) => {
   const [edit, setEdit] = useState(false);
   const [detailTodo, setDetailTodo] = useState({});
   const {title, content, createdAt}: TodoType = detailTodo;
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const res = await getSpecificTodo('/todos/', curParams);
@@ -25,7 +29,7 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
   const handleDelete = (e) => {
     e.preventDefault();
     deleteTodo('/todos/', curParams)
-    window.location.href = "/";
+    navigate('/');
     refresher();
   };
   const handleUpdateMode = () => {
@@ -46,8 +50,12 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
               <BiCircle />
               <h3>{title}</h3>
               <TodoDetailStyle.EditBox>
-                <BsTrashFill onClick={handleDelete} />
-                <FaEdit onClick={handleUpdateMode} />
+                <IconButton onClick={handleDelete} type="button">
+                  <BsTrashFill />
+                </IconButton>
+                <IconButton onClick={handleUpdateMode} type="button">
+                  <FaEdit />
+                </IconButton>
               </TodoDetailStyle.EditBox>
             </TodoDetailStyle.TodoTitle>
             <TodoDetailStyle.TodoContent>

@@ -4,8 +4,10 @@ import Input from "../../common/Input/Input";
 import Button from "../../common/button/Button";
 import {AiFillCloseSquare} from 'react-icons/ai';
 import * as SignUpStyle from './SignUpStyle';
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const emailRegex = /[\w\-.]+@[\w\-.]+\.[\w\-.]/g
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/g
   const checkEmailValidation = (inputEmail) => {
@@ -28,10 +30,10 @@ const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     SignupApi(email,password)
-    window.location.href = "/auth";
+    navigate('/auth');
   };
   const handleCloseSignup = () => {
-    window.location.href = "/auth";
+    navigate('/auth');
   }
   
   return (

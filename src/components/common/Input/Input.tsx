@@ -1,15 +1,7 @@
 import * as InputStyle from './InputStyle';
-export type InputProps = {
-  name?: string;
-  id?: string;
-  type: 'text' | 'email' | 'password';
-  onChange: React.ChangeEventHandler;
-  placeholder?: string;
-  border?: string;
-  value?: string;
-}
+import { InputProps } from './InputType';
 
-const Input = ({ name, id, type, onChange, placeholder, border, value }: InputProps) => {
+const Input = ({ name, id, type, onChange, placeholder, border, value, tabIndex }: InputProps) => {
   const borderStyle = InputStyle.BORDER[border];
   return (
     <>
@@ -22,6 +14,7 @@ const Input = ({ name, id, type, onChange, placeholder, border, value }: InputPr
       placeholder={placeholder} 
       borderStyle={borderStyle}
       value={value}
+      tabIndex={tabIndex}
       />
     </>
   )

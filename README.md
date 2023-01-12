@@ -28,4 +28,6 @@
 벨로그: https://velog.io/@koyk0408/series/typescript
 > 2. 스타일과 로직 분리
 벨로그: https://velog.io/@koyk0408/react-%EC%8A%A4%ED%83%80%EC%9D%BC%EA%B3%BC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0
+> 3. tab focusing
+벨로그: https://velog.io/@koyk0408/React-tab-focusing
 

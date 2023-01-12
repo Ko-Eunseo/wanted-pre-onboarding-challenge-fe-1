@@ -1,12 +1,7 @@
 import * as StyledBtn from './StyledButton';
-export type ButtonProps = {
-  children: React.ReactNode;
-  styles: string;
-  onClick?: any;
-  disabled?: boolean;
-  type: 'submit'|'button'|'reset';
-}
-const Button = ({ children, styles, onClick, disabled, type }: ButtonProps) => {
+import { ButtonProps } from './ButtonType';
+
+const Button = ({ children, styles, onClick, disabled, type, tabIndex }: ButtonProps) => {
   const buttonStyle = StyledBtn.BUTTON_STYLE[styles];
   return (
     <>
@@ -15,6 +10,7 @@ const Button = ({ children, styles, onClick, disabled, type }: ButtonProps) => {
       onClick={onClick} 
       disabled={disabled}
       type={type}
+      tabIndex={tabIndex}
       >
         {children}
       </StyledBtn.StyledBtn>

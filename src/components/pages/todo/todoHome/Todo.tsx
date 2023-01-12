@@ -6,6 +6,7 @@ import TodoDetail from "../todoDetail/TodoDetail";
 import TodoList from "../todoList/TodoList";
 import Button from "../../../common/button/Button";
 import * as TodoStyle from './TodoStyle';
+import IconButton from "../../../common/iconButton/IconButton";
 
 const Todo = () => {
   const [addMode, setAddMode] = useState(false);
@@ -15,14 +16,14 @@ const Todo = () => {
   const { "*" : curParams} = useParams();
   useEffect(() => {
     if(!accessToken) {
-      window.location.href = "/auth";
+      navigate('auth');
     };
   }, [accessToken, navigate, refresh]);
 
   const handleLogout = () => {
     window.localStorage.removeItem("todo_accessToken");
     alert('로그아웃 되었습니다.');
-    window.location.href = "/auth";
+    navigate('/auth');
     window.location.reload();
   };
 
@@ -39,12 +40,20 @@ const Todo = () => {
       <TodoStyle.TodoBox>
         <TodoStyle.Header>
           <TodoStyle.Title>Todo List</TodoStyle.Title>
-          {
+          <IconButton tabIndex={1} onClick={ addMode ? handleAddMode : handleAddMode} type="button">
+            {
             addMode ?
-            <AiFillCloseSquare onClick={handleAddMode}/>
+            <>
+              <AiFillCloseSquare/>
+            </>
             :
-            <AiFillPlusSquare onClick={handleAddMode}/>
-          }
+            <>
+              <AiFillPlusSquare 
+              // style={{fontSize:'1.2rem'}}
+              />
+            </>
+            }
+          </IconButton>
         </TodoStyle.Header>
         <TodoStyle.Article>
           <TodoList refresher={refresher} refresh={refresh} />

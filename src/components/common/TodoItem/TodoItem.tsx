@@ -2,17 +2,26 @@ import * as TodoItemStyle from "./TodoItemStyle";
 import { BiCircle, BiCheckCircle } from 'react-icons/bi';
 import { useNavigate, useParams } from "react-router-dom";
 
-const TodoItem = ({ todo, refresher }) => {
+const TodoItem = ({ todo, refresher, tabIndex }) => {
   const navigate = useNavigate();
   const { "*" : curParams} = useParams();
-  const handleOpenDetailPage = (e) => {
+  const handleOpenDetailPage = () => {
     curParams === todo.id ?
     navigate('/') :
     navigate(`${todo.id}`);
   };
+  const OpenDetailWithEnter = (e) => {
+    if(e.key === 'Enter') {
+      handleOpenDetailPage();
+    }
+  }
   return (
     <>
-      <TodoItemStyle.TodoItemBox key={todo.id} onClick={handleOpenDetailPage} >
+      <TodoItemStyle.TodoItemBox 
+      key={todo.id} 
+      onClick={handleOpenDetailPage} 
+      onKeyPress={OpenDetailWithEnter} 
+      tabIndex={tabIndex+1}>
         <TodoItemStyle.TodoTitle>
           {curParams === todo.id ?
             <BiCheckCircle />

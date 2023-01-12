@@ -7,6 +7,7 @@ export const BUTTON_STYLE = {
     --padding: 8px 0;
     --width: 100%;
     --hover: .8;
+    --focus-border: 0.1rem solid #cb5917;
   `,
   cancel: css`
   --background-color: #cb5917;
@@ -14,12 +15,14 @@ export const BUTTON_STYLE = {
   --padding: 8px 0;
   --width: 100%;
   --hover: .8;
+  --focus-border: 0.1rem solid #171e71;
 `,
   link: css`
     --background-color: transparent;
     --color: black;
     --padding: 4px;
     --hover: underline;
+    --focus-border: 0.1rem solid #171e71;
   `,
 };
 export const StyledBtn = styled.button<{buttonStyle: string}>`
@@ -31,6 +34,10 @@ export const StyledBtn = styled.button<{buttonStyle: string}>`
   color: var(--color);
   padding: var(--padding);
   cursor: pointer;
+
+  &:focus-visible {
+    border: var(--focus-border);
+  }
 
   &:hover {
     opacity: var(--hover);
