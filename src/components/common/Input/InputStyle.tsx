@@ -16,4 +16,8 @@ export const InputStyle = styled.input<{borderStyle:string}>`
   border: var(--input-border);
   width: 100%;
   border-radius: 4px;
+
+  &:focus-visible {
+    border: 0.1rem solid #FBDE8B;
+  }
 `;

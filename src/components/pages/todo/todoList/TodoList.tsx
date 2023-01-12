@@ -15,10 +15,10 @@ const TodoList = ({ refresh, refresher }) => {
   return (
     <TodoListStyle.TodoUl>
       {
-        todos.map((todo) => {
+        todos.map((todo, i) => {
           return (
             <div key={todo.id}>
-              <TodoItem key={todo.id} todo={todo} refresher={refresher}
+              <TodoItem key={todo.id} todo={todo} refresher={refresher} tabIndex={i}
             />
             </div>
           )
