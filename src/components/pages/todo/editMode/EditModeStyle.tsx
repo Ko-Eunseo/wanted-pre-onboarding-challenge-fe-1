@@ -17,12 +17,6 @@ export const TodoTitle = styled.div`
   padding: 8px 16px;
   justify-content: space-between;
 `;
-export const Textarea = styled.textarea`
-  width: 100%;
-  border-radius: 4px;
-  margin: 8px 0 0;
-  padding: 8px 8px 16px;
-`;
 export const ButtonBox = styled.div`
   display: flex;
   margin-top: 8px;

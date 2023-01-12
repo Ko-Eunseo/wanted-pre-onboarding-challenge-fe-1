@@ -10,7 +10,7 @@ export const TodoDetailBox = styled.section`
 export const TodoTitle = styled.header`
   display: flex;
   border-bottom: 1px solid #eeeeee;
-  padding: 8px 16px;
+  padding: 8px 12px 8px 16px;
   justify-content: space-between;
   border: 2px solid #cb5917;
   border-left: 0;
@@ -30,10 +30,12 @@ export const TodoTitle = styled.header`
   }
 `;
 export const EditBox = styled.div`
-  svg {
-    margin-top: 4px;
-    &:first-of-type {
-      margin-right: 8px;
+  display: flex;
+  button {
+    padding: 4px;
+    margin: 0 2px;
+    &:last-of-type {
+      margin: 0;
     }
   }
 `;
