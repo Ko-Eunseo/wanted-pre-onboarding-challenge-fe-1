@@ -1,6 +1,7 @@
 import * as IconButtonStyle from './IconButtonStyle';
+import { ButtonProps } from '../button/ButtonType';
 
-const IconButton = ({children, onClick, tabIndex }) => {
+const IconButton = ({ children, onClick, tabIndex }: ButtonProps) => {
   return (
     <IconButtonStyle.IconButtonStyle tabIndex={tabIndex} onClick={onClick}>
       {children}
