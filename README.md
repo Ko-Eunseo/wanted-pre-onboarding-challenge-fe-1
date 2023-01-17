@@ -1,6 +1,16 @@
 # wanted-pre-onboarding-frontend
 원티드 프리온보딩 사전과제 Todo
 
+### Refactor
+> 1. 타입스크립트 적용
+벨로그: https://velog.io/@koyk0408/series/typescript
+> 2. 스타일과 로직 분리
+벨로그: https://velog.io/@koyk0408/react-%EC%8A%A4%ED%83%80%EC%9D%BC%EA%B3%BC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0
+> 3. tab focusing
+벨로그: https://velog.io/@koyk0408/React-tab-focusing
+
+> 4. react query 적용 벨로그: [todo list](https://velog.io/@koyk0408/React-useState-useEffect-%EB%8C%80%EC%8B%A0-useQuery-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0) | [todo CRUD](https://velog.io/@koyk0408/React-useState-useEffect-%EB%8C%80%EC%8B%A0-useMutation-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-Create-Update-Delete-d26cs7ke)
+
 ## Login
 > https://user-images.githubusercontent.com/85021536/210786405-0b094950-2c2d-4cd8-9614-566715986e82.mov
 
@@ -23,11 +33,5 @@
 ### Delete
 > https://user-images.githubusercontent.com/85021536/210788725-6f77b64d-11f2-4d08-b2cc-bda6403b7cbe.mov
 
-### Refactor
-> 1. 타입스크립트 적용
-벨로그: https://velog.io/@koyk0408/series/typescript
-> 2. 스타일과 로직 분리
-벨로그: https://velog.io/@koyk0408/react-%EC%8A%A4%ED%83%80%EC%9D%BC%EA%B3%BC-%EB%A1%9C%EC%A7%81-%EB%B6%84%EB%A6%AC%ED%95%98%EA%B8%B0
-> 3. tab focusing
-벨로그: https://velog.io/@koyk0408/React-tab-focusing
+
 
