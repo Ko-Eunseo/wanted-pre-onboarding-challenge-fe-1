@@ -1,50 +1,75 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { deleteTodo, getSpecificTodo } from "../../../api/TodoApi";
-import { BiCircle } from 'react-icons/bi';
+import { BiCircle } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { BsTrashFill } from "react-icons/bs";
 import EditMode from "../editMode/EditMode";
-import * as TodoDetailStyle from './TodoDetailStyle';
+import * as TodoDetailStyle from "./TodoDetailStyle";
 import IconButton from "../../../common/iconButton/IconButton";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 interface TodoType {
-  title?: string,
-  content?: string,
-  createdAt?: string,
+  title?: string;
+  content?: string;
+  createdAt?: string;
 }
 
-const TodoDetail = ({curParams, refresh, refresher}) => {
+const TodoDetail = ({ curParams, refresher }) => {
   const [edit, setEdit] = useState(false);
-  const [detailTodo, setDetailTodo] = useState({});
-  const {title, content, createdAt}: TodoType = detailTodo;
   const navigate = useNavigate();
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await getSpecificTodo('/todos/', curParams);
-      setDetailTodo(res.data);
-    }
-    fetchData();
-  }, [curParams, refresh]);
+
+  // delete w react query
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation(deleteTodo, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(["todo"]);
+      navigate("/");
+    },
+  });
   const handleDelete = (e) => {
     e.preventDefault();
-    deleteTodo('/todos/', curParams)
-    navigate('/');
-    refresher();
+    deleteMutation.mutate(curParams);
+    navigate("/");
   };
+
+  // readDetail w react query
+  const fetchDetail = async ({ queryKey }) => {
+    const [_, id] = queryKey;
+    const res = await getSpecificTodo(id);
+    return res.data;
+  };
+
+  const { data, isLoading, isError } = useQuery(
+    ["detailTodo", curParams],
+    fetchDetail
+  );
+
   const handleUpdateMode = () => {
     setEdit(!edit);
   };
-  
+
+  if (isLoading) {
+    return <div>is Loading...</div>;
+  }
+  if (isError) {
+    return <div>is Error...</div>;
+  }
+
+  const { title, content, createdAt }: TodoType = data;
+
   return (
     <>
       <TodoDetailStyle.TodoDetailBox>
-        {
-          edit ? 
-          <EditMode curParams={curParams} 
-          curTitle={title} curContent={content} 
-          refresher={refresher} handleUpdateMode={handleUpdateMode}/>
-          :
+        {edit ? (
+          <EditMode
+            curParams={curParams}
+            curTitle={title}
+            curContent={content}
+            refresher={refresher}
+            handleUpdateMode={handleUpdateMode}
+          />
+        ) : (
           <>
             <TodoDetailStyle.TodoTitle>
               <BiCircle />
@@ -59,14 +84,14 @@ const TodoDetail = ({curParams, refresh, refresher}) => {
               </TodoDetailStyle.EditBox>
             </TodoDetailStyle.TodoTitle>
             <TodoDetailStyle.TodoContent>
-            <span>Date: {createdAt}</span>
+              <span>Date: {createdAt}</span>
               <p>{content}</p>
             </TodoDetailStyle.TodoContent>
           </>
-        }
+        )}
       </TodoDetailStyle.TodoDetailBox>
     </>
-  )
-}
+  );
+};
 
 export default TodoDetail;
