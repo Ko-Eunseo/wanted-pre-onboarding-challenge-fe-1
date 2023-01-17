@@ -1,31 +1,33 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { getTodos } from "../../../api/TodoApi";
 import TodoItem from "../../../common/TodoItem/TodoItem";
-import * as TodoListStyle from './TodoListStyle';
+import * as TodoListStyle from "./TodoListStyle";
 
-const TodoList = ({ refresh, refresher }) => {
-  const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await getTodos('/todos');
-      setTodos(res.data);
-    }
-    fetchData();
-  }, [refresh])
+const TodoList = () => {
+  const fetchTodo = async () => {
+    const res = await getTodos();
+    return res.data;
+  };
+
+  const { data, isLoading, isError } = useQuery("todo", fetchTodo);
+
+  if (isLoading) {
+    return <div>isLoding...</div>;
+  }
+  if (isError) {
+    return <div>error</div>;
+  }
   return (
     <TodoListStyle.TodoUl>
-      {
-        todos.map((todo, i) => {
-          return (
-            <div key={todo.id}>
-              <TodoItem key={todo.id} todo={todo} refresher={refresher} tabIndex={i}
-            />
-            </div>
-          )
-        })
-      }
+      {data.map((todo, i) => {
+        return (
+          <div key={todo.id}>
+            <TodoItem key={todo.id} todo={todo} tabIndex={i} />
+          </div>
+        );
+      })}
     </TodoListStyle.TodoUl>
-  )
+  );
 };
 
 export default TodoList;
