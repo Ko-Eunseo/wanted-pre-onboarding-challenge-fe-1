@@ -25,14 +25,11 @@ export const createTodo = async (parameter) => {
   return res.data;
 };
 
-export const updateTodo = async (todoId, parameter) => {
+export const updateTodo = async (updatedData) => {
+  const { todoId, parameter } = updatedData;
   const res = await axios.put(url + "/todos/" + todoId, parameter);
   return res.data;
 };
-// export const updateTodo = async (todoId, parameter) => {
-//   const res = await axios.put(url + "/todos/" + todoId, parameter);
-//   return res.data;
-// };
 
 export const deleteTodo = async (todoId) => {
   await axios.delete(url + "/todos/" + todoId);
