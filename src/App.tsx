@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./components/pages/login/Login";
 import SignUp from "./components/pages/signup/SignUp";
 import Todo from "./components/pages/todo/todoHome/Todo";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 

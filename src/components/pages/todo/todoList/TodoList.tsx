@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getTodos } from "../../../api/TodoApi";
 import TodoItem from "../../../common/TodoItem/TodoItem";
 import * as TodoListStyle from "./TodoListStyle";
@@ -9,7 +9,7 @@ const TodoList = () => {
     return res.data;
   };
 
-  const { data, isLoading, isError } = useQuery("todo", fetchTodo);
+  const { data, isLoading, isError } = useQuery(["todo"], fetchTodo);
 
   if (isLoading) {
     return <div>isLoding...</div>;
