@@ -5,13 +5,13 @@ export const TodoItemBox = styled.li`
   width: 100%;
   margin: 4px auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding-left: 8px;
   justify-content: space-between;
   position: relative;
-  
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     top: 0;
@@ -20,7 +20,6 @@ export const TodoItemBox = styled.li`
     height: 100%;
     border-bottom: 2px solid #cb5917;
   }
-  
   &:focus-visible {
     border: 0.1rem solid #025ce2;
     border-radius: 0.5rem;
@@ -35,6 +34,7 @@ export const TodoTitle = styled.header`
   margin: 4px;
   align-items: center;
   h2 {
+    flex: 1;
     font-size: 1rem;
     margin-left: 4px;
   }

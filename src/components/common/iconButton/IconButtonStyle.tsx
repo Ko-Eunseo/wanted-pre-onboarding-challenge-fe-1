@@ -8,7 +8,7 @@ export const IconButtonStyle = styled.button`
     transition: 0.2s all ease-in;
   }
   &:focus-visible::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;

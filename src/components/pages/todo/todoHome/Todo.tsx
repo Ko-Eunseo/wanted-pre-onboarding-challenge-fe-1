@@ -21,10 +21,14 @@ const Todo = () => {
   }, [accessToken, navigate, refresh]);
 
   const handleLogout = () => {
-    window.localStorage.removeItem("todo_accessToken");
-    alert("로그아웃 되었습니다.");
-    navigate("/auth");
-    window.location.reload();
+    if (!window.confirm("정말 로그아웃하시겠습니까?")) {
+      return;
+    } else {
+      window.localStorage.removeItem("todo_accessToken");
+      alert("로그아웃 되었습니다.");
+      navigate("/auth");
+      window.location.reload();
+    }
   };
 
   const refresher = () => {

@@ -3,7 +3,7 @@ import { updateTodo } from "../../../api/TodoApi";
 import Input from "../../../common/Input/Input";
 import Button from "../../../common/button/Button";
 import * as EditModeStyle from "./EditModeStyle";
-import Textarea from "../../../common/textaea/Textarea";
+import Textarea from "../../../common/textarea/Textarea";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const EditMode = ({ curParams, curTitle, curContent, handleUpdateMode }) => {
@@ -31,13 +31,17 @@ const EditMode = ({ curParams, curTitle, curContent, handleUpdateMode }) => {
 
   const submitUpdateTodo = (e) => {
     e.preventDefault();
-    const todoId = curParams;
-    const parameter = {
-      title: title ? title : curTitle,
-      content: content ? content : curContent,
-    };
-    modifyMutation.mutate({ todoId, parameter });
-    handleUpdateMode();
+    if (!window.confirm("정말 해당 todo를 수정하시겠습니까?")) {
+      handleUpdateMode();
+    } else {
+      const todoId = curParams;
+      const parameter = {
+        title: title ? title : curTitle,
+        content: content ? content : curContent,
+      };
+      modifyMutation.mutate({ todoId, parameter });
+      handleUpdateMode();
+    }
   };
   return (
     <>
