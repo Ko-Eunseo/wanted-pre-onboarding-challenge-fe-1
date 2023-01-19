@@ -6,7 +6,7 @@
 > https://user-images.githubusercontent.com/85021536/210786405-0b094950-2c2d-4cd8-9614-566715986e82.mov
 
 ## Logout
-> 새로찍기
+> https://user-images.githubusercontent.com/85021536/213477970-b768c502-d14f-4f28-b41e-f9f9ea467826.mov
 
 ## Signup
 > https://user-images.githubusercontent.com/85021536/210797225-670cea72-1ea8-4214-aab2-34cd5423a804.mov
@@ -22,7 +22,7 @@
 > https://user-images.githubusercontent.com/85021536/210788557-6dd93484-312e-428a-ac2f-c12355a1af5e.mov
 
 ### Delete
-> 새로찍기
+> https://user-images.githubusercontent.com/85021536/213477859-9c60308a-8e8d-4019-8613-3a321c96d882.mov
 
 ## Installation
 > 백엔드 서버를 구동하기 위해 api를 추가로 설치해야합니다.
