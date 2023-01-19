@@ -30,8 +30,11 @@ const TodoDetail = ({ curParams, refresher }) => {
   });
   const handleDelete = (e) => {
     e.preventDefault();
-    deleteMutation.mutate(curParams);
-    navigate("/");
+    if (!window.confirm("정말 삭제하시겠습니까?")) {
+      return;
+    } else {
+      deleteMutation.mutate(curParams);
+    }
   };
 
   // readDetail w react query

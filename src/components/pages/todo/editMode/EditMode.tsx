@@ -26,13 +26,16 @@ const EditMode = ({
   };
   const submitUpdateTodo = (e) => {
     e.preventDefault();
-    const payload = {
-      title: title ? title : curTitle,
-      content: content ? content : curContent,
-    };
-    updateTodo(curParams, payload);
-    refresher();
-    handleUpdateMode();
+    if (!window.confirm("정말 해당 todo를 수정하시겠습니까?")) {
+      handleUpdateMode();
+    } else {
+      const payload = {
+        title: title ? title : curTitle,
+        content: content ? content : curContent,
+      };
+      updateTodo(curParams, payload);
+      handleUpdateMode();
+    }
   };
   return (
     <>
