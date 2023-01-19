@@ -17,8 +17,17 @@ export const TodoTitle = styled.header`
   border-right: 0;
   align-items: center;
   color: #171e71;
+
   h3 {
+    flex: 1;
+    margin-left: 8px;
     font-size: 1.2rem;
+    max-height: 3.6rem;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
   }
   @media screen and (min-width: 701px) and (max-width: 800px) {
     h3 {
@@ -45,7 +54,8 @@ export const TodoContent = styled.div`
   border-bottom: 2px solid #cb5917;
   opacity: 0.8;
   background-position: center;
-  background-image:  linear-gradient(#cb5917 1px, transparent 1px), linear-gradient(to right, #cb5917 1px, transparent 1px);
+  background-image: linear-gradient(#cb5917 1px, transparent 1px),
+    linear-gradient(to right, #cb5917 1px, transparent 1px);
   background-size: 1.5rem 1.5rem;
   p {
     margin: 16px 8px;

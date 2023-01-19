@@ -3,7 +3,7 @@ import { updateTodo } from "../../../api/TodoApi";
 import Input from "../../../common/Input/Input";
 import Button from "../../../common/button/Button";
 import * as EditModeStyle from "./EditModeStyle";
-import Textarea from "../../../common/textaea/Textarea";
+import Textarea from "../../../common/textarea/Textarea";
 
 const EditMode = ({
   curParams,

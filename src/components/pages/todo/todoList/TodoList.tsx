@@ -19,13 +19,17 @@ const TodoList = () => {
   }
   return (
     <TodoListStyle.TodoUl>
-      {data.map((todo, i) => {
-        return (
-          <div key={todo.id}>
-            <TodoItem key={todo.id} todo={todo} tabIndex={i} />
-          </div>
-        );
-      })}
+      {!data.length ? (
+        <span>등록된 todo가 아직 없어요.</span>
+      ) : (
+        data.map((todo, i) => {
+          return (
+            <div key={todo.id}>
+              <TodoItem key={todo.id} todo={todo} tabIndex={i} />
+            </div>
+          );
+        })
+      )}
     </TodoListStyle.TodoUl>
   );
 };

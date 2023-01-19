@@ -3,8 +3,8 @@ export const Wrap = styled.div`
   display: flex;
   justify-content: center;
   width: 80%;
-  border-radius: 8px;
   margin-top: 1rem;
+
   @media screen and (max-width: 700px) {
     flex-direction: column;
     position: relative;
@@ -14,6 +14,7 @@ export const Wrap = styled.div`
 export const Footer = styled.footer`
   border-top: 5px double #cb5917;
   padding-bottom: 16px;
+  text-align: center;
   @media screen and (max-width: 700px) {
     position: absolute;
     left: 0;
@@ -41,7 +42,7 @@ export const TodoHandleBox = styled.aside`
   flex: 1;
   max-width: 400px;
   @media screen and (max-width: 700px) {
-    box-shadow: 0px -5px 4px -2px rgba(163,163,163,0.49);
+    box-shadow: 0px -5px 4px -2px rgba(163, 163, 163, 0.49);
     border-radius: 8px;
     position: absolute;
     bottom: 46px;

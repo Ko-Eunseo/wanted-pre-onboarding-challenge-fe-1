@@ -8,6 +8,7 @@ import * as TodoDetailStyle from "./TodoDetailStyle";
 import IconButton from "../../../common/iconButton/IconButton";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { SlideIn } from "../../../common/Animation";
 
 interface TodoType {
   title?: string;
@@ -59,7 +60,7 @@ const TodoDetail = ({ curParams, refresher }) => {
   const { title, content, createdAt }: TodoType = data;
 
   return (
-    <>
+    <SlideIn>
       <TodoDetailStyle.TodoDetailBox>
         {edit ? (
           <EditMode
@@ -90,7 +91,7 @@ const TodoDetail = ({ curParams, refresher }) => {
           </>
         )}
       </TodoDetailStyle.TodoDetailBox>
-    </>
+    </SlideIn>
   );
 };
 

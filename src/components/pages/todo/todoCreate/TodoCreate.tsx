@@ -4,9 +4,10 @@ import { useState } from "react";
 import { createTodo } from "../../../api/TodoApi";
 import { AiFillCloseSquare } from "react-icons/ai";
 import * as TodoCreateStyle from "./TodoCreateStyle";
-import Textarea from "../../../common/textaea/Textarea";
+import Textarea from "../../../common/textarea/Textarea";
 import IconButton from "../../../common/iconButton/IconButton";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { SlideIn } from "../../../common/Animation";
 
 const TodoCreate = ({ handleAddMode }) => {
   const [todoContent, setTodoContent] = useState({
@@ -42,7 +43,7 @@ const TodoCreate = ({ handleAddMode }) => {
     return <div>is Loading...</div>;
   }
   return (
-    <>
+    <SlideIn>
       <TodoCreateStyle.CreateForm onSubmit={handleCreateTodo}>
         <TodoCreateStyle.CreateTitle>
           <h3>Todo 추가하기</h3>
@@ -64,7 +65,7 @@ const TodoCreate = ({ handleAddMode }) => {
           Add Todo
         </Button>
       </TodoCreateStyle.CreateForm>
-    </>
+    </SlideIn>
   );
 };
 
