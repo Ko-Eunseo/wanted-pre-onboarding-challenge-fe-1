@@ -70,7 +70,6 @@ const TodoDetail = ({ curParams, refresher }) => {
             curParams={curParams}
             curTitle={title}
             curContent={content}
-            refresher={refresher}
             handleUpdateMode={handleUpdateMode}
           />
         ) : (

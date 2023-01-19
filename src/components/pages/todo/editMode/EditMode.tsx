@@ -4,14 +4,9 @@ import Input from "../../../common/Input/Input";
 import Button from "../../../common/button/Button";
 import * as EditModeStyle from "./EditModeStyle";
 import Textarea from "../../../common/textarea/Textarea";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const EditMode = ({
-  curParams,
-  refresher,
-  curTitle,
-  curContent,
-  handleUpdateMode,
-}) => {
+const EditMode = ({ curParams, curTitle, curContent, handleUpdateMode }) => {
   const [updateTodoData, setUpdateTodoData] = useState({
     title: "",
     content: "",
@@ -24,16 +19,27 @@ const EditMode = ({
       [name]: value,
     });
   };
+
+  const queryClient = useQueryClient();
+  const modifyMutation = useMutation({
+    mutationFn: updateTodo,
+    onSuccess: (modifiedData) => {
+      queryClient.setQueryData(["detailTodo", { id: curParams }], modifiedData);
+      queryClient.invalidateQueries(["detailTodo"]);
+    },
+  });
+
   const submitUpdateTodo = (e) => {
     e.preventDefault();
     if (!window.confirm("정말 해당 todo를 수정하시겠습니까?")) {
       handleUpdateMode();
     } else {
-      const payload = {
+      const todoId = curParams;
+      const parameter = {
         title: title ? title : curTitle,
         content: content ? content : curContent,
       };
-      updateTodo(curParams, payload);
+      modifyMutation.mutate({ todoId, parameter });
       handleUpdateMode();
     }
   };
